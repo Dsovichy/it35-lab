@@ -7,7 +7,11 @@ import {
     IonPage, 
     IonTitle, 
     IonToolbar, 
-    useIonRouter
+    useIonRouter, 
+    IonInput,
+    IonItem, 
+    IonList,
+    IonInputPasswordToggle
 } from '@ionic/react';
 
 const Login: React.FC = () => {
@@ -24,6 +28,15 @@ const Login: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className='ion-padding'>
+
+      <IonItem>
+        <IonInput label="Email:" labelPlacement="stacked" placeholder="Enter your email"></IonInput>
+      </IonItem>
+
+      <IonInput type="password" label="Password" value="">
+      <IonInputPasswordToggle slot="end"></IonInputPasswordToggle>
+    </IonInput>
+
           <IonButton onClick={() => doLogin()} expand="full">
               Login
           </IonButton>
