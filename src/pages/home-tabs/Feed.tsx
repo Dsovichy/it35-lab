@@ -7,7 +7,7 @@ import {
       IonTitle, 
       IonToolbar 
   } from '@ionic/react';
-  
+    import SearchContainer from '../../components/SearchContainer';
   const Feed: React.FC = () => {
     return (
       <IonPage>
@@ -28,6 +28,7 @@ import {
             height: '100%',
           }}
         >
+          
           Feed
         </div>
         </IonContent>
