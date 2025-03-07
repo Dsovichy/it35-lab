@@ -1,18 +1,16 @@
-import { 
+import {
   IonButton,
   IonButtons,
-    IonContent, 
-    IonHeader, 
-    IonMenuButton, 
-    IonPage, 
-    IonTitle, 
-    IonToolbar, 
-    useIonRouter, 
-    IonInput,
-    IonItem, 
-    IonList,
-    IonInputPasswordToggle
+  IonContent,
+  IonHeader,
+  IonInput,
+  IonMenuButton,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  useIonRouter
 } from '@ionic/react';
+import Pokelogo from './Images/Pokelogo.png'; 
 
 const Login: React.FC = () => {
   const navigation = useIonRouter();
@@ -27,15 +25,19 @@ const Login: React.FC = () => {
           <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className='ion-padding'>
+      <IonContent>
 
-      <IonItem>
-        <IonInput label="Email:" labelPlacement="stacked" placeholder="Enter your email"></IonInput>
-      </IonItem>
+      <img
+          src={Pokelogo} 
+          alt="Logo"
+          style={{ width: '150px', margin: '70px auto', display: 'block' }}
+        />
+        
+      <IonInput label="Email" labelPlacement="floating" fill="outline" placeholder="Enter text" style={{ marginTop: '100px' }}></IonInput>
 
-      <IonInput type="password" label="Password" value="">
-      <IonInputPasswordToggle slot="end"></IonInputPasswordToggle>
-    </IonInput>
+<br />
+
+<IonInput label="Password" labelPlacement="floating" fill="outline" placeholder="Enter text"></IonInput>
 
           <IonButton onClick={() => doLogin()} expand="full">
               Login
