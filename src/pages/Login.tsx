@@ -48,17 +48,7 @@ const Login: React.FC = () => {
                        overflow: 'hidden' 
                      }}
                    >
-                     {/*
-                     <img
-                       alt="Silhouette of a person's head"
-                       src="https://ionicframework.com/docs/img/demos/avatar.svg"
-                       style={{
-                         width: '100%', 
-                         height: '100%',
-                         objectFit: 'cover' 
-                       }}
-                     />
-                     */}
+                     
                       <IonIcon 
                        icon={logoIonic}
                        color='primary'
