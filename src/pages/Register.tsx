@@ -14,8 +14,6 @@ import {
     IonCardSubtitle,
     IonCardTitle,
     IonAlert,
-
-
 } from '@ionic/react';
 import { supabase } from '../utils/supabaseClient';
 import bcrypt from 'bcryptjs';
@@ -46,12 +44,12 @@ const Register: React.FC = () => {
     const [showAlert, setShowAlert] = useState(false);
 
     const handleOpenVerificationModal = () => {
-        /*if (!email.endsWith("@nbsc.edu.ph")) {
+       /* if (!email.endsWith("@nbsc.edu.ph")) {
             setAlertMessage("Only @nbsc.edu.ph emails are allowed to register.");
             setShowAlert(true);
             return;
-        }*/
-
+        }
+    */
         if (password !== confirmPassword) {
             setAlertMessage("Passwords do not match.");
             setShowAlert(true);
@@ -60,7 +58,6 @@ const Register: React.FC = () => {
 
         setShowVerificationModal(true);
     };
-
 
     const doRegister = async () => {
         setShowVerificationModal(false);
@@ -137,8 +134,6 @@ const Register: React.FC = () => {
                                 <IonCardSubtitle>Username</IonCardSubtitle>
                                 <IonCardTitle>{username}</IonCardTitle>
 
-
-
                                 <IonCardSubtitle>Email</IonCardSubtitle>
                                 <IonCardTitle>{email}</IonCardTitle>
 
@@ -175,4 +170,5 @@ const Register: React.FC = () => {
         </IonPage>
     );
 };
-  export default Register;
+
+export default Register;
