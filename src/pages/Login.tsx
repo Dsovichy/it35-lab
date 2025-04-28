@@ -14,6 +14,7 @@ import { logoIonic } from 'ionicons/icons';
 import { useState } from 'react';
 import Pokelogo from './Images/Pokelogo.png'; 
 import { supabase } from '../utils/supabaseClient';
+import background from '../pages/Images/PokeBackground.jpeg';
 
 const AlertBox: React.FC<{ message: string; isOpen: boolean; onClose: () => void }> = ({ message, isOpen, onClose }) => {
   return (
@@ -53,6 +54,22 @@ const Login: React.FC = () => {
   return (
     <IonPage>
       <IonContent className='ion-padding'>
+
+      <img
+              src={background}
+              alt="background"
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'cover', 
+                zIndex: -1, 
+              }}
+            />
+
+
         <div style={{
           display: 'flex',
           flexDirection:'column',
@@ -71,6 +88,10 @@ const Login: React.FC = () => {
               overflow: 'hidden' 
             }}
           >
+
+          
+            
+
               <img
           src={Pokelogo} 
           alt="Logo"

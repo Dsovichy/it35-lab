@@ -3,6 +3,7 @@ import { IonApp, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton
 import { User } from '@supabase/supabase-js';
 import { supabase } from '../utils/supabaseClient';
 import { colorFill, pencil, trash } from 'ionicons/icons';
+import background from '../pages/Images/PokeBackground.jpeg'
 
 interface Post {
   post_id: string;
@@ -117,6 +118,21 @@ const FeedContainer = () => {
           </IonToolbar>
         </IonHeader>
         <IonContent>
+        
+        <img
+              src={background}
+              alt="background"
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'cover', 
+                zIndex: -1, 
+              }}
+            />
+
           {user ? (
             <>
             <IonCard>
