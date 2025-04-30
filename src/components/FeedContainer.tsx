@@ -110,16 +110,10 @@ const FeedContainer = () => {
   };
 
   return (
-    <IonApp>
-      <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Posts</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
-        
-        <img
+    <>
+    <IonContent>
+
+    <img
               src={background}
               alt="background"
               style={{
@@ -133,97 +127,125 @@ const FeedContainer = () => {
               }}
             />
 
-          {user ? (
-            <>
-            <IonCard>
-                <IonCardHeader>
-                    <IonCardTitle>Create Post</IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                    <IonInput value={postContent} onIonChange={e => setPostContent(e.detail.value!)} placeholder="Write a post..." />
-                </IonCardContent>
-                <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '0.5rem' }}>
-                    <IonButton onClick={createPost}>Post</IonButton>
-                </div>
-            </IonCard>
+      {user ? (
+        <>
+          <IonCard>
+            <IonCardHeader>
+              <IonCardTitle>Create Post</IonCardTitle>
+            </IonCardHeader>
+            <IonCardContent>
+              <IonInput
+                value={postContent}
+                onIonChange={e => setPostContent(e.detail.value!)}
+                placeholder="Write a post..."
+              />
+            </IonCardContent>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '0.5rem' }}>
+              <IonButton onClick={createPost}>Post</IonButton>
+            </div>
+          </IonCard>
 
-              {posts.map(post => (
-                <IonCard key={post.post_id} style={{ marginTop: '2rem' }}>
-                <IonCardHeader>
-                  <IonRow>
-                    <IonCol size="1.85">
-                      <IonAvatar>
-                        <img alt={post.username} src={post.avatar_url} />
-                      </IonAvatar>
-                    </IonCol>
-                    <IonCol>
-                      <IonCardTitle style={{ marginTop: '10px' }}>{post.username}</IonCardTitle>
-                      <IonCardSubtitle>{new Date(post.post_created_at).toLocaleString()}</IonCardSubtitle>
-                    </IonCol>
-                    <IonCol size="auto">
-                      {/* Pencil icon triggers popover */}
-                      <IonButton
-                        fill="clear"
-                        onClick={(e) => setPopoverState({ open: true, event: e.nativeEvent, postId: post.post_id })}
-                      >
-                        <IonIcon color="secondary" icon={pencil} />
-                      </IonButton>
-                    </IonCol>
-                  </IonRow>
-                </IonCardHeader>
-              
-                <IonCardContent>
-                    <IonText style={{ color: 'white' }}>
-                        <h1>{post.post_content}</h1>
-                    </IonText>
-                </IonCardContent>
-                
-                {/* Popover with Edit and Delete options */}
-                <IonPopover
-                  isOpen={popoverState.open && popoverState.postId === post.post_id}
-                  event={popoverState.event}
-                  onDidDismiss={() => setPopoverState({ open: false, event: null, postId: null })}
+          {posts.map(post => (
+            <IonCard key={post.post_id} style={{ marginTop: '2rem' }}>
+              <IonCardHeader>
+                <IonRow>
+                  <IonCol size="1.85">
+                    <IonAvatar>
+                      <img alt={post.username} src={post.avatar_url} />
+                    </IonAvatar>
+                  </IonCol>
+                  <IonCol>
+                    <IonCardTitle style={{ marginTop: '10px' }}>{post.username}</IonCardTitle>
+                    <IonCardSubtitle>{new Date(post.post_created_at).toLocaleString()}</IonCardSubtitle>
+                  </IonCol>
+                  <IonCol size="auto">
+                    <IonButton
+                      fill="clear"
+                      onClick={(e) =>
+                        setPopoverState({
+                          open: true,
+                          event: e.nativeEvent,
+                          postId: post.post_id,
+                        })
+                      }
+                    >
+                      <IonIcon color="secondary" icon={pencil} />
+                    </IonButton>
+                  </IonCol>
+                </IonRow>
+              </IonCardHeader>
+
+              <IonCardContent>
+                <IonText style={{ color: 'white' }}>
+                  <h1>{post.post_content}</h1>
+                </IonText>
+              </IonCardContent>
+
+              <IonPopover
+                isOpen={popoverState.open && popoverState.postId === post.post_id}
+                event={popoverState.event}
+                onDidDismiss={() =>
+                  setPopoverState({ open: false, event: null, postId: null })
+                }
+              >
+                <IonButton
+                  fill="clear"
+                  onClick={() => {
+                    startEditingPost(post);
+                    setPopoverState({ open: false, event: null, postId: null });
+                  }}
                 >
-                  <IonButton fill="clear" onClick={() => { startEditingPost(post); setPopoverState({ open: false, event: null, postId: null }); }}>
-                    Edit
-                  </IonButton>
-                  <IonButton fill="clear" color="danger" onClick={() => { deletePost(post.post_id); setPopoverState({ open: false, event: null, postId: null }); }}>
-                    Delete
-                  </IonButton>
-                </IonPopover>
-              </IonCard>
-              ))}
-            </>
-          ) : (
-            <IonLabel>Loading...</IonLabel>
-          )}
-        </IonContent>
+                  Edit
+                </IonButton>
+                <IonButton
+                  fill="clear"
+                  color="danger"
+                  onClick={() => {
+                    deletePost(post.post_id);
+                    setPopoverState({ open: false, event: null, postId: null });
+                  }}
+                >
+                  Delete
+                </IonButton>
+              </IonPopover>
+            </IonCard>
+          ))}
+        </>
+      ) : (
+        <IonLabel>Loading...</IonLabel>
+      )}
+    </IonContent>
 
-        <IonModal isOpen={isModalOpen} onDidDismiss={() => setIsModalOpen(false)}>
-          <IonHeader>
-            <IonToolbar>
-              <IonTitle>Edit Post</IonTitle>
-            </IonToolbar>
-          </IonHeader>
-          <IonContent>
-            <IonInput value={postContent} onIonChange={e => setPostContent(e.detail.value!)} placeholder="Edit your post..." />
-          </IonContent>
-          <IonFooter>
-            <IonButton onClick={savePost}>Save</IonButton>
-            <IonButton onClick={() => setIsModalOpen(false)}>Cancel</IonButton>
-          </IonFooter>
-        </IonModal>
-
-        <IonAlert
-          isOpen={isAlertOpen}
-          onDidDismiss={() => setIsAlertOpen(false)}
-          header="Success"
-          message="Post updated successfully!"
-          buttons={['OK']}
+    <IonModal isOpen={isModalOpen} onDidDismiss={() => setIsModalOpen(false)}>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Edit Post</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        <IonInput
+          value={postContent}
+          onIonChange={e => setPostContent(e.detail.value!)}
+          placeholder="Edit your post..."
         />
-      </IonPage>
-    </IonApp>
-  );
+      </IonContent>
+      <IonFooter>
+        <IonButton onClick={savePost}>Save</IonButton>
+        <IonButton onClick={() => setIsModalOpen(false)}>Cancel</IonButton>
+      </IonFooter>
+    </IonModal>
+
+    <IonAlert
+      isOpen={isAlertOpen}
+      onDidDismiss={() => setIsAlertOpen(false)}
+      header="Success"
+      message="Post updated successfully!"
+      buttons={['OK']}
+    />
+  </>
+);
+
+
 };
 
 export default FeedContainer;
