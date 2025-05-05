@@ -14,7 +14,7 @@ import { logoIonic } from 'ionicons/icons';
 import { useState } from 'react';
 import Pokelogo from './Images/Pokelogo.png'; 
 import { supabase } from '../utils/supabaseClient';
-import background from '../pages/Images/PokeBackground.jpeg';
+import background from '../pages/Images/blackBG.jpg';
 
 const AlertBox: React.FC<{ message: string; isOpen: boolean; onClose: () => void }> = ({ message, isOpen, onClose }) => {
   return (
@@ -135,7 +135,7 @@ const Login: React.FC = () => {
           Login
         </IonButton>
 
-        <IonButton routerLink="/register" expand="full" fill="clear" shape='round' color={'danger'} style={{ marginTop: '10px' }}>
+        <IonButton routerLink="/it35-lab/register" expand="full" fill="clear" shape='round' color={'danger'} style={{ marginTop: '10px' }}>
           Don't have an account? Register here
         </IonButton>
 

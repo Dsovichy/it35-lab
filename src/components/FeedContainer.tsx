@@ -3,7 +3,7 @@ import { IonApp, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton
 import { User } from '@supabase/supabase-js';
 import { supabase } from '../utils/supabaseClient';
 import { colorFill, pencil, trash } from 'ionicons/icons';
-import background from '../pages/Images/PokeBackground.jpeg'
+import background from '../pages/Images/blackBG.jpg'
 
 interface Post {
   post_id: string;
