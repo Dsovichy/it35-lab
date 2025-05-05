@@ -104,7 +104,8 @@ const Login: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-          }}>USER LOGIN</h1>
+            color: '#E55451'
+          }}>𝙐𝙎𝙀𝙍 𝙇𝙊𝙂𝙄𝙉</h1>
           <IonInput
             label="Email" 
             labelPlacement="stacked" 
