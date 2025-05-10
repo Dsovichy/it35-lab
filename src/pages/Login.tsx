@@ -12,7 +12,9 @@ import {
 } from '@ionic/react';
 import { logoIonic } from 'ionicons/icons';
 import { useState } from 'react';
+import Pokelogo from './Images/Pokelogo.png'; 
 import { supabase } from '../utils/supabaseClient';
+import background from '../pages/Images/blackBG.jpg';
 
 const AlertBox: React.FC<{ message: string; isOpen: boolean; onClose: () => void }> = ({ message, isOpen, onClose }) => {
   return (
@@ -52,6 +54,22 @@ const Login: React.FC = () => {
   return (
     <IonPage>
       <IonContent className='ion-padding'>
+
+      <img
+              src={background}
+              alt="background"
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'cover', 
+                zIndex: -1, 
+              }}
+            />
+
+
         <div style={{
           display: 'flex',
           flexDirection:'column',
@@ -70,41 +88,55 @@ const Login: React.FC = () => {
               overflow: 'hidden' 
             }}
           >
-            <IonIcon 
-              icon={logoIonic}
-              color='primary'
-              style={{ fontSize: '120px', color: '#6c757d' }} 
-            />
+
+          
+            
+
+              <img
+          src={Pokelogo} 
+          alt="Logo"
+          style={{ width: '150px', margin: '70px auto', display: 'block' }}
+        />
+        
+
           </IonAvatar>
           <h1 style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-          }}>USER LOGIN</h1>
+            color: '#E55451'
+          }}>𝙐𝙎𝙀𝙍 𝙇𝙊𝙂𝙄𝙉</h1>
           <IonInput
             label="Email" 
-            labelPlacement="floating" 
+            labelPlacement="stacked" 
             fill="outline"
             type="email"
             placeholder="Enter Email"
             value={email}
             onIonChange={e => setEmail(e.detail.value!)}
+            shape='round'
+            color={'danger'}
+      
           />
-          <IonInput style={{ marginTop:'10px' }}      
+          <IonInput style={{ marginTop:'10px' }}   
+            label="Password"   
+            labelPlacement="stacked"  
             fill="outline"
             type="password"
-            placeholder="Password"
+            placeholder="Enter Password"
             value={password}
             onIonChange={e => setPassword(e.detail.value!)}
+            shape='round'
+            color={'danger'}
           >
             <IonInputPasswordToggle slot="end"></IonInputPasswordToggle>
           </IonInput>
         </div>
-        <IonButton onClick={doLogin} expand="full" shape='round'>
+        <IonButton onClick={doLogin} expand="full" shape='round'color={'danger'}>
           Login
         </IonButton>
 
-        <IonButton routerLink="/it35-lab/register" expand="full" fill="clear" shape='round'>
+        <IonButton routerLink="/it35-lab/register" expand="full" fill="clear" shape='round' color={'danger'} style={{ marginTop: '10px' }}>
           Don't have an account? Register here
         </IonButton>
 
